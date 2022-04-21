@@ -1,0 +1,23 @@
+.nav {
+    grid-area: n;
+    background: #465366;
+    padding: 20px;
+  }
+.item{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+.item a{
+    color: #fff;
+    text-decoration: none;
+
+}
+
+.item:first-child{
+  margin-top: 30px;
+}
+.item .active {
+    color: gold;
+}

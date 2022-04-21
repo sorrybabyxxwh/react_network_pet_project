@@ -1,0 +1,10 @@
+.ava_desc{
+    display: flex;
+    margin-top: 20px;
+
+}
+.desc{
+    margin-left: 15px;
+    background-color: rgb(255, 255, 255);
+    padding: 50px;
+}

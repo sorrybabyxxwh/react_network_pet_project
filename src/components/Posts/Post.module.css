@@ -1,0 +1,25 @@
+.posts{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 920px;
+
+}
+
+.posts{
+    margin-top: 10px;
+    background-color: lightcoral;
+    width: 300px;
+}
+
+textarea{
+    width: 700px;
+    height: 50px;
+}
+.addNewPost{
+    display: flex;
+}
+button{
+    width: 200px;
+    height: 56px;
+    margin-left: 20px;
+}
