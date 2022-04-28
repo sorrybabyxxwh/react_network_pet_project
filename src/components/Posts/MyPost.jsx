@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classes from './Post.module.css';
 import Post from "./Post";
-
+import {addPostActionCreator, updateNewPostChangeActionCreator} from "../../redux/state";
 
 
 
@@ -13,16 +13,24 @@ const MyPost = (props) => {
 
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        alert(text);
-    }
 
+        let text = newPostElement.current.value;
+        props.dispatch(addPostActionCreator());
+        // props.updatePostText("");
+    }
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        // let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+        let action = updateNewPostChangeActionCreator(text);
+        props.dispatch(action)
+    }
+    debugger;
     return (
         <div>
             <h3>My Post</h3>
             <div className={classes.addNewPost}>
-                <div className={classes.textInput}>
-                    <textarea ref={newPostElement}></textarea>
+                <div>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
                     <button onClick={ addPost }>Add Post</button>
