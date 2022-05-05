@@ -1,8 +1,11 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+import profilePageReducer from "./profilePage-reducer";
+import messagesPageReducer from "./messagesPage-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 let store = {
     _state: {
-        profilePage:{
+        profilePage: {
+
             posts: [
                 {message: 'Post Message', id: 1},
                 {message: 'Post Message', id: 2},
@@ -10,74 +13,44 @@ let store = {
             ],
             newPostText: "hi There"
         },
-        messagesPage:{
-            dialogsData: [
+        messagesPage: {
+            dialogs: [
                 {name: 'Sara', id: 1},
                 {name: 'Sasha', id: 2},
                 {name: 'Antony', id: 3}
             ],
-            messagesData: [
+            messages: [
                 {message: 'Hi', id: 1},
                 {message: 'Bye', id: 2},
                 {message: 'See you soon', id: 3}
-            ]
-        }
+            ],
+            newMessageText: ""
+        },
+        sidebar: {}
 
     },
-    _rerenderEntireDOM () {
+    _rerenderEntireDOM() {
         console.log("state was changed")
     },
 
-    getState () {
+    getState() {
+
         return this._state;
     },
-    subscribe (observer) {
+    subscribe(observer) {
         this._rerenderEntireDOM = observer;
     },
+    dispatch(action) {
 
-    // _addPost ()  {
-    //
-    //     let newPost = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText
-    //     };
-    //
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._rerenderEntireDOM(this._state);
-    //
-    // },
-    // _updatePostText (newText)  {
-    //     this._state.profilePage.newPostText = newText;
-    //     this._rerenderEntireDOM(this._state);
-    //
-    // },
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesPageReducer(this._state.messagesPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-    dispatch (action) {
-        if(action.type === ADD_POST){
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._rerenderEntireDOM(this._state);
-
-        } else if (action.type === UPDATE_NEW_POST_TEXT){
-            this._state.profilePage.newPostText = action.newText;
-            this._rerenderEntireDOM(this._state);
-        }
-    }
-
-}
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
+        this._rerenderEntireDOM(this._state);
     }
 }
-export const updateNewPostChangeActionCreator = (text) =>{
-    return {
-        type: UPDATE_NEW_POST_TEXT, newText: text
-    }
-}
+
+
 
 
 
