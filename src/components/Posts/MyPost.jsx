@@ -6,23 +6,14 @@ import {addPostActionCreator, updateNewPostChangeActionCreator} from "../../redu
 
 
 const MyPost = (props) => {
-    let PostsElements =
-       props.posts.map(p => <Post message={p.message}/>);
-
+    let PostsElements = props.posts.map(p => <Post message={p.message}/>);
     let newPostElement = React.createRef();
-
-
-    let addPost = () => {
-
-        let text = newPostElement.current.value;
-        props.dispatch(addPostActionCreator());
-        // props.updatePostText("");
+    let onAddPost = () => {
+        props.addPost();
     }
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        // let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
-        let action = updateNewPostChangeActionCreator(text);
-        props.dispatch(action)
+        props.updateNewPostText(text);
     }
     debugger;
     return (
@@ -33,15 +24,11 @@ const MyPost = (props) => {
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
                 </div>
                 <div>
-                    <button onClick={ addPost }>Add Post</button>
+                    <button onClick={ onAddPost }>Add Post</button>
                 </div>
             </div>
-            <div>
-                {/*<Post message = {posts[0].message} />*/}
-                {PostsElements}
-            </div>
+            <div>{PostsElements}</div>
         </div>
-
     );
 }
 export default MyPost;

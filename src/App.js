@@ -1,14 +1,13 @@
-// import { makeStyles } from '@material-ui/core';
 import classes from './App.module.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
-import {BrowserRouter, Switch, Route, Link, Routes} from 'react-router-dom';
-import store from "./redux/state";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
+    debugger;
     return (
             <BrowserRouter>
             <div className={classes.app_wrapper}>
@@ -16,8 +15,8 @@ const App = (props) => {
                 <Navbar/>
                 <div className={classes.app_wrapper_content}>
                     <Routes>
-                        <Route path="dialogs/*" element={<Dialogs store={props.store}/>}/>
-                        <Route path="/profile" element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
+                        <Route path="dialogs/*" element={<DialogsContainer store={props.store}/>}/>
+                        <Route path="/profile" element={<Profile store={props.store}/>}/>
                     </Routes>
                 </div>
             </div>
