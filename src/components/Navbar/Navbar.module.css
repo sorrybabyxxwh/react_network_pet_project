@@ -15,10 +15,10 @@
     text-decoration: none;
 
 }
-
+.item a:hover{
+    cursor: pointer;
+    color: gold;
+}
 .item:first-child{
   margin-top: 30px;
-}
-.item .active {
-    color: gold;
 }
