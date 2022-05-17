@@ -10,8 +10,8 @@ let reducersPack = combineReducers({
 });
 
 
-let store = createStore(reducersPack)
+const store = createStore(reducersPack)
 
-
+window.store = store;
 
 export default store;
